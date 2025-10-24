@@ -25,12 +25,13 @@ jobs:
           pip install bandit pytest
 
       - name: Run Bandit (Security Check)
-        run: bandit -r . -lll
+        run: bandit -r . -ll
 
       - name: Fail on High Severity Issues
         run: |
-          bandit -r . -lll -f json -o result.json
-          if grep -q '"issue_severity": "HIGH"' result.json; then
-            echo " High severity issues found!"
-            exit 1
+          bandit -r . -ll -f json -o result.json
+          if jq '.results[] | select(.issue_severity=="HIGH")' result.json | grep -q '.'; then
+              echo "High severity issues found!"
+              exit 1
           fi
+
