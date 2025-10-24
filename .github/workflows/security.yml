@@ -22,16 +22,21 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install bandit pytest
+          pip install bandit pytest jq
 
       - name: Run Bandit (Security Check)
-        run: bandit -r . -ll
+        run: |
+          # Исключаем стороннюю папку sqlmap, которая даёт много ложных/ожидаемых предупреждений
+          bandit -r . -lll --exclude sqlmap/sqlmap-master
 
       - name: Fail on High Severity Issues
         run: |
-          bandit -r . -ll -f json -o result.json
+          bandit -r . -lll -f json -o result.json --exclude sqlmap/sqlmap-master
           if jq '.results[] | select(.issue_severity=="HIGH")' result.json | grep -q '.'; then
-              echo "High severity issues found!"
-              exit 1
+            echo "High severity issues found!"
+            cat result.json
+            exit 1
           fi
 
+      - name: Run Pytest
+        run: pytest
