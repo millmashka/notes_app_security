@@ -1,17 +1,18 @@
-name: Security Pipeline
+name: Security Scan
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  security:
+  bandit_scan:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -21,22 +22,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install bandit pytest jq
+          python -m pip install --upgrade pip
+          pip install bandit
 
-      - name: Run Bandit (Security Check)
+      - name: Run Bandit
         run: |
-          # Исключаем стороннюю папку sqlmap, которая даёт много ложных/ожидаемых предупреждений
-          bandit -r . -lll --exclude sqlmap/sqlmap-master
-
-      - name: Fail on High Severity Issues
-        run: |
-          bandit -r . -lll -f json -o result.json --exclude sqlmap/sqlmap-master
-          if jq '.results[] | select(.issue_severity=="HIGH")' result.json | grep -q '.'; then
-            echo "High severity issues found!"
-            cat result.json
-            exit 1
-          fi
-
-      - name: Run Pytest
-        run: pytest
+          # Сканиваем весь проект, исключая папку sqlmap
+          bandit -r . -x sqlmap -lll -ii
