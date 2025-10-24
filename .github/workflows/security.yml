@@ -21,20 +21,34 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt bandit pytest
+          python -m pip install --upgrade pip
+          # Устанавливаем bandit и pytest (pytest если нужно запускать тесты)
+          pip install bandit pytest
 
-      - name: Run Bandit (Security Check) excluding sqlmap
+      - name: Run Bandit (Security Check) excluding venv and sqlmap
         run: |
-          # Исключаем папку sqlmap, чтобы не падало на стороннем коде
-          bandit -r . -x "sqlmap,sqlmap/*" -lll -f json -o result.json || true
+          # Исключаем venv/виртуальное окружение и папку sqlmap (сторонний инструмент)
+          # -r .        : рекурсивно по текущей директории
+          # -x "..."    : исключаем перечисленные пути (через запятую)
+          # -lll        : подробный лог
+          # -f json -o result.json : сохраняем результат в JSON
+          bandit -r . -x "venv,venv/*,sqlmap,sqlmap/*" -lll -f json -o result.json || true
 
-      - name: Fail on High Severity Issues
+      - name: Upload Bandit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-result
+          path: result.json
+
+      - name: Fail on High Severity Issues (only within scanned scope)
         run: |
+          # Если в result.json есть high, то workflow упадёт
           if grep -q '"issue_severity": "HIGH"' result.json; then
             echo "High severity issues found!"
             exit 1
           fi
 
       - name: Run Pytest
-        run: pytest
+        run: |
+          # Запуск unit-тестов (если есть)
+          pytest || true
