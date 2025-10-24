@@ -1,0 +1,14 @@
+# Настройка SSL для PostgreSQL
+
+Для повышения уровня безопасности подключения к базе данных были созданы следующие файлы:
+- server.key — закрытый ключ сервера;
+- server.crt — сертификат безопасности сервера;
+- server.csr — запрос на сертификат.
+
+Эти файлы расположены в каталоге PostgreSQL:
+C:\Program Files\PostgreSQL\18\data\
+
+В конфигурационном файле postgresql.conf были активированы параметры:
+ssl = on
+ssl_cert_file = 'server.crt'
+ssl_key_file = 'server.key'
