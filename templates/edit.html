@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование заметки</title>
+  <!-- Подключение CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <h1>Редактировать заметку</h1>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST">
+    {{ form.hidden_tag() }} <!-- CSRF -->
+    <p>
+      {{ form.title.label }}<br>
+      {{ form.title(class_="input-field") }}<br>
+      {% for error in form.title.errors %}
+        <span class="error">{{ error }}</span> <!-- ошибки поля title -->
+      {% endfor %}
+    </p>
+
+    <p>
+      {{ form.content.label }}<br>
+      {{ form.content(class_="textarea-field") }}<br>
+      {% for error in form.content.errors %}
+        <span class="error">{{ error }}</span> <!-- ошибки поля content -->
+      {% endfor %}
+    </p>
+
+    <p>{{ form.submit(class_="btn-save") }}</p>
+  </form>
+
+  <!-- Ссылка обратно на главную страницу -->
+  <p><a href="{{ url_for('index') }}">Назад</a></p>
+</div>
+</body>
+</html>

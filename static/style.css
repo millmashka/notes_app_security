@@ -1,0 +1,96 @@
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Контейнер */
+.container {
+  background: #1e1e1e;
+  padding: 20px 30px;
+  border-radius: 10px;
+  margin-top: 40px;
+  width: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Заголовки */
+h1,
+h2 {
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Формы */
+form p {
+  margin: 10px 0;
+}
+
+/* Поля ввода */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+/* Кнопки */
+.btn-save {
+  background: #28a745;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-save:hover {
+  background: #218838;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-delete:hover {
+  background: #c82333;
+}
+
+/* Ссылки */
+a {
+  color: #61dafb;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Список заметок */
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  background: #2a2a2a;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+}
+
+.error {
+  color: #ff5252;
+  font-size: 0.9em;
+}

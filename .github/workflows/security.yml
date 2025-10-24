@@ -1,0 +1,36 @@
+name: Security Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install bandit pytest
+
+      - name: Run Bandit (Security Check)
+        run: bandit -r . -lll
+
+      - name: Fail on High Severity Issues
+        run: |
+          bandit -r . -lll -f json -o result.json
+          if grep -q '"issue_severity": "HIGH"' result.json; then
+            echo " High severity issues found!"
+            exit 1
+          fi

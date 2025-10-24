@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Вход — Заметки</title>
+    <link
+      rel="stylesheet"
+      href="/static/style.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Вход</h1>
+
+      <p>
+        <a href="/register">Регистрация</a> |
+        <a href="/">Главная</a>
+        
+      </p>
+
+        
+
+      <form method="POST" action="/login">
+        <!-- CSRF токен -->
+        <input type="hidden" name="csrf_token" value="IjI5NDk4ZTVkMjU1YzdmZjYzYjMyNGZiN2VmODNhODZiNTdjYmVlOTgi.aOzYFg.QGQ9URruoJQlBfNKdwwVPY_hZ5A" />
+
+        <p>
+          <label
+            >Логин<br />
+            <input
+              name="username"
+              placeholder="username"
+              value=""
+            />
+          </label>
+        </p>
+
+        <p>
+          <label
+            >Пароль<br />
+            <input name="password" placeholder="password" type="password" />
+          </label>
+        </p>
+
+        <p><button type="submit">Войти</button></p>
+      </form>
+    </div>
+  </body>
+</html>
