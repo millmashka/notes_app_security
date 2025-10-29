@@ -41,11 +41,12 @@ jobs:
 
       - name: Check for unsafe debug mode
         run: |
-          if grep -R "debug=True" ./; then
-            echo "❌ Security Alert: debug mode enabled in app.py!"
+          # Ищем debug=True, но исключаем большие или сторонние директории,
+          # которые создают "шум" (venv, sqlmap).
+          if grep -R --line-number --exclude-dir=venv --exclude-dir=sqlmap "debug=True" .; then
+            echo "❌ Security Alert: debug mode enabled in repository (excluded venv/sqlmap)!"
             exit 1
           fi
-
       - name: Run Pytest
         run: |
           pytest || true
