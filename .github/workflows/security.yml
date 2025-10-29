@@ -27,7 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install bandit
 
-      # Запуск Bandit только на моих файлах
+      # Запуск Bandit только на твоих файлах
       - name: Run Bandit (Security Check)
         run: |
           bandit form.py app.py -lll -f json -o result.json || true
@@ -39,11 +39,15 @@ jobs:
           name: bandit-result
           path: result.json
 
-      # Показ высоких проблем
-      - name: Display High Severity Issues (do not fail workflow)
+      # Блокировка merge при High severity
+      - name: Fail on High Severity Issues
         run: |
-          echo "High severity issues (if any) in scanned scope:"
-          grep '"issue_severity": "HIGH"' result.json || echo "None"
+          if grep -q '"issue_severity": "HIGH"' result.json; then
+            echo "❌ High severity security issues found! Blocking merge."
+            exit 1
+          else
+            echo "✅ No high severity issues."
+          fi
 
       # Проверка debug=True
       - name: Check for unsafe debug mode
