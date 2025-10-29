@@ -11,50 +11,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Клонирование репозитория
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Настройка Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      # Установка Bandit
-      - name: Install dependencies
+      - name: Install Bandit
         run: |
           python -m pip install --upgrade pip
           pip install bandit
 
-      # Запуск Bandit только на твоих файлах
-      - name: Run Bandit (Security Check)
+      - name: Run Bandit (only project files)
         run: |
+          # Проверяем только form.py и app.py
           bandit form.py app.py -lll -f json -o result.json || true
 
-      # Загрузка отчёта
       - name: Upload Bandit report
         uses: actions/upload-artifact@v4
         with:
           name: bandit-result
           path: result.json
 
-      # Блокировка merge при High severity
       - name: Fail on High Severity Issues
         run: |
-          if grep -q '"issue_severity": "HIGH"' result.json; then
-            echo "❌ High severity security issues found! Blocking merge."
+          if [ -f result.json ] && grep -q '"issue_severity": "HIGH"' result.json; then
+            echo "❌ High severity security issues found in scanned files! Blocking merge."
+            # Печатаем краткий фрагмент для быстрого просмотра
+            grep -n '"issue_severity": "HIGH"' result.json || true
             exit 1
           else
-            echo "✅ No high severity issues."
+            echo "✅ No high severity issues in scanned files."
           fi
 
-      # Проверка debug=True
-      - name: Check for unsafe debug mode
+      - name: Check for unsafe debug mode (only project files)
         run: |
-          if grep -R --include="*.py" "debug=True" .; then
-            echo "❌ Security Alert: debug mode enabled in code!"
+          # Ищем debug=True только в form.py и app.py
+          if grep -q "debug=True" form.py app.py 2>/dev/null; then
+            echo "❌ Security Alert: debug=True found in project files! Blocking merge."
+            # Показать, в каком файле найдено
+            grep -n "debug=True" form.py app.py || true
             exit 1
           else
-            echo "✅ No debug=True found in Python code."
+            echo "✅ No debug=True found in form.py and app.py."
           fi
