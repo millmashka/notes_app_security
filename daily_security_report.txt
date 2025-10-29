@@ -1,0 +1,5 @@
+Daily security report generated at 2025-10-29T14:44:52.543613
+Processed log lines: 0
+Total incidents detected: 0
+
+Incidents detail:

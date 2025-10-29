@@ -1,0 +1,69 @@
+﻿.\sqlmap\sqlmap-master\extra\beep\beep.py: start_process_with_a_shell - Starting a process with a shell, possible injection detected, security issue.
+.\sqlmap\sqlmap-master\extra\beep\beep.py: start_process_with_a_shell - Starting a process with a shell, possible injection detected, security issue.
+.\sqlmap\sqlmap-master\extra\beep\beep.py: start_process_with_a_shell - Starting a process with a shell, possible injection detected, security issue.
+.\sqlmap\sqlmap-master\lib\controller\controller.py: subprocess_popen_with_shell_equals_true - subprocess call with shell=True identified, security issue.
+.\sqlmap\sqlmap-master\lib\core\common.py: subprocess_popen_with_shell_equals_true - subprocess call with shell=True identified, security issue.
+.\sqlmap\sqlmap-master\lib\core\common.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\core\decorators.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\core\dump.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\core\dump.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\core\readlineng.py: start_process_with_a_shell - Starting a process with a shell, possible injection detected, security issue.
+.\sqlmap\sqlmap-master\lib\core\update.py: subprocess_popen_with_shell_equals_true - subprocess call with shell=True identified, security issue.
+.\sqlmap\sqlmap-master\lib\request\connect.py: request_with_no_cert_validation - Call to httpx with verify=False disabling SSL certificate checks, security issue.
+.\sqlmap\sqlmap-master\lib\utils\hash.py: blacklist - The pyCrypto library and its module MODE_CBC are no longer actively maintained and have been deprecated. Consider using pyca/cryptography library.
+.\sqlmap\sqlmap-master\lib\utils\hash.py: blacklist - The pyCrypto library and its module new are no longer actively maintained and have been deprecated. Consider using pyca/cryptography library.
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hash.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\lib\utils\hashdb.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\thirdparty\bottle\bottle.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\thirdparty\bottle\bottle.py: blacklist - Consider possible security implications associated with CGIHandler module.
+.\sqlmap\sqlmap-master\thirdparty\bottle\bottle.py: blacklist - Consider possible security implications associated with wsgiref.handlers.CGIHandler module.
+.\sqlmap\sqlmap-master\thirdparty\bottle\bottle.py: jinja2_autoescape_false - By default, jinja2 sets autoescape to False. Consider using autoescape=True or use the select_autoescape function to mitigate XSS vulnerabilities.
+.\sqlmap\sqlmap-master\thirdparty\keepalive\keepalive.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\thirdparty\keepalive\keepalive.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\sqlmap\sqlmap-master\thirdparty\keepalive\keepalive.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\bandit\plugins\trojansource.py: trojansource - A Python source file contains bidirectional control characters ('\u202e').
+.\venv\Lib\site-packages\click\_termui_impl.py: subprocess_popen_with_shell_equals_true - subprocess call with shell=True identified, security issue.
+.\venv\Lib\site-packages\flask\sessions.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\flask_wtf\csrf.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\flask_wtf\csrf.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\greenlet\tests\test_version.py: start_process_with_a_shell - Starting a process with a shell, possible injection detected, security issue.
+.\venv\Lib\site-packages\itsdangerous\signer.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\jinja2\bccache.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\jinja2\bccache.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\jinja2\loaders.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\pip\_internal\commands\configuration.py: subprocess_popen_with_shell_equals_true - subprocess call with shell=True identified, security issue.
+.\venv\Lib\site-packages\pip\_internal\commands\search.py: blacklist - Using xmlrpc.client to parse untrusted XML data is known to be vulnerable to XML attacks. Use defusedxml.xmlrpc.monkey_patch() function to monkey-patch xmlrpclib and mitigate XML vulnerabilities.
+.\venv\Lib\site-packages\pip\_internal\network\xmlrpc.py: blacklist - Using xmlrpc.client to parse untrusted XML data is known to be vulnerable to XML attacks. Use defusedxml.xmlrpc.monkey_patch() function to monkey-patch xmlrpclib and mitigate XML vulnerabilities.
+.\venv\Lib\site-packages\pip\_internal\network\xmlrpc.py: blacklist - Using _HostType to parse untrusted XML data is known to be vulnerable to XML attacks. Use defusedxml.xmlrpc.monkey_patch() function to monkey-patch xmlrpclib and mitigate XML vulnerabilities.
+.\venv\Lib\site-packages\pip\_internal\utils\unpacking.py: tarfile_unsafe_members - tarfile.extractall used without any validation. Please check and discard dangerous members.
+.\venv\Lib\site-packages\pip\_vendor\distlib\compat.py: blacklist - Using xmlrpclib to parse untrusted XML data is known to be vulnerable to XML attacks. Use defusedxml.xmlrpc.monkey_patch() function to monkey-patch xmlrpclib and mitigate XML vulnerabilities.
+.\venv\Lib\site-packages\pip\_vendor\distlib\compat.py: blacklist - Using xmlrpc.client to parse untrusted XML data is known to be vulnerable to XML attacks. Use defusedxml.xmlrpc.monkey_patch() function to monkey-patch xmlrpclib and mitigate XML vulnerabilities.
+.\venv\Lib\site-packages\pip\_vendor\distlib\util.py: tarfile_unsafe_members - tarfile.extractall used without any validation. Please check and discard dangerous members.
+.\venv\Lib\site-packages\pip\_vendor\requests\auth.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\pip\_vendor\requests\auth.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\pip\_vendor\requests\auth.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\pygments\lexers\_php_builtins.py: tarfile_unsafe_members - tarfile.extractall used without any validation. Please check and discard dangerous members.
+.\venv\Lib\site-packages\sqlalchemy\util\compat.py: hashlib - Use of weak MD5 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\werkzeug\debug\__init__.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\werkzeug\debug\__init__.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\werkzeug\http.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False
+.\venv\Lib\site-packages\wtforms\csrf\session.py: hashlib - Use of weak SHA1 hash for security. Consider usedforsecurity=False

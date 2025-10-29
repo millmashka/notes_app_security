@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 import os
 from flask_wtf.csrf import CSRFProtect
 from werkzeug.security import generate_password_hash, check_password_hash
+import logging
+from flask import request
 
 # Создание приложения Flask
 app = Flask(__name__)
@@ -31,6 +33,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Инициализация базы данных
 db = SQLAlchemy(app)
+
+# Настройка логирования
+logging.basicConfig(
+    filename='flask_app.log',
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s: %(message)s'
+)
 
 # ---- модели ----
 class User(db.Model):
@@ -69,13 +78,18 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        ip = request.remote_addr
         username = request.form.get('username', '').strip()
         password = request.form.get('password', '')
+        # логируем попытку входа (не храним пароль в логах на проде!)
+        logging.info(f"LOGIN_ATTEMPT ip={ip} username={username}")
         user = User.query.filter_by(username=username, password=password).first()
         if user:
             session['user'] = user.username
+            logging.info(f"LOGIN_SUCCESS ip={ip} username={username}")
             flash("Вход выполнен (safe)!", "success")
             return redirect(url_for('index'))
+        logging.warning(f"LOGIN_FAILED ip={ip} username={username}")
         flash("Неверные учетные данные", "error")
         return redirect(url_for('login'))
     return render_template('login.html', safe=True)
@@ -116,6 +130,8 @@ def index():
 
     form = NoteForm()
     if form.validate_on_submit():
+        ip = request.remote_addr
+        logging.info(f"NOTE_CREATE ip={ip} owner={session['user']} title={form.title.data} content={form.content.data}")
         new_note = Note(
             title=form.title.data,
             content=form.content.data,
@@ -166,4 +182,4 @@ def delete(note_id):
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=False)
+    app.run(debug=True)
