@@ -9,17 +9,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import logging
 from flask import request
 
-# Создание приложения Flask
 app = Flask(__name__)
 
-# Настройка секретного ключа для сессий и CSRF-токенов
 load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'dev-secret-for-local'
 
-# Включаем CSRF 
 app.config['WTF_CSRF_ENABLED'] = True
 
-# Настройка сессий
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['SESSION_COOKIE_SECURE'] = False
