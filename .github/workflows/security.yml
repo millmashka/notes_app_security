@@ -11,38 +11,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Клонирование репозитория
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Настройка Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
+      # Установка Bandit
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install bandit
 
-      - name: Run Bandit (Security Check) excluding venv and sqlmap
+      # Запуск Bandit только на моих файлах
+      - name: Run Bandit (Security Check)
         run: |
-          bandit -r . -x "venv,venv/*,sqlmap,sqlmap/*" -lll -f json -o result.json || true
+          bandit form.py app.py -lll -f json -o result.json || true
 
+      # Загрузка отчёта
       - name: Upload Bandit report
         uses: actions/upload-artifact@v4
         with:
           name: bandit-result
           path: result.json
 
+      # Показ высоких проблем
       - name: Display High Severity Issues (do not fail workflow)
         run: |
           echo "High severity issues (if any) in scanned scope:"
           grep '"issue_severity": "HIGH"' result.json || echo "None"
 
+      # Проверка debug=True
       - name: Check for unsafe debug mode
         run: |
-          # Проверяем только Python-файлы и исключаем служебные директории
-          if grep -R --include="*.py" --exclude-dir=venv --exclude-dir=sqlmap "debug=True" .; then
+          if grep -R --include="*.py" "debug=True" .; then
             echo "❌ Security Alert: debug mode enabled in code!"
             exit 1
           else
