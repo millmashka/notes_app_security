@@ -39,6 +39,12 @@ jobs:
         run: |
           echo "High severity issues (if any) in scanned scope:"
           grep '"issue_severity": "HIGH"' result.json || echo "None"
+            - name: Check for unsafe debug mode
+        run: |
+          if grep -R "debug=True" ./; then
+            echo "❌ Security Alert: debug mode enabled in app.py!"
+            exit 1
+          fi
 
       - name: Run Pytest
         run: |
