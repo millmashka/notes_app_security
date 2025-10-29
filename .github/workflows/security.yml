@@ -26,7 +26,6 @@ jobs:
 
       - name: Run Bandit (Security Check) excluding venv and sqlmap
         run: |
-          # Исключаем venv/виртуальное окружение и папку sqlmap
           bandit -r . -x "venv,venv/*,sqlmap,sqlmap/*" -lll -f json -o result.json || true
 
       - name: Upload Bandit report
@@ -39,7 +38,8 @@ jobs:
         run: |
           echo "High severity issues (if any) in scanned scope:"
           grep '"issue_severity": "HIGH"' result.json || echo "None"
-            - name: Check for unsafe debug mode
+
+      - name: Check for unsafe debug mode
         run: |
           if grep -R "debug=True" ./; then
             echo "❌ Security Alert: debug mode enabled in app.py!"
@@ -49,3 +49,4 @@ jobs:
       - name: Run Pytest
         run: |
           pytest || true
+
